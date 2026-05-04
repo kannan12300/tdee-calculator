@@ -1,25 +1,31 @@
 import type { Metadata } from "next";
+import Analytics from "./analytics";
 import "./globals.css";
-import { SEO_DESCRIPTION, SEO_TITLE, SITE_URL } from "./seo-content";
+import { creator, DEFAULT_DESCRIPTION, DEFAULT_TITLE, FITNESS_KEYWORDS, SITE_NAME, SITE_URL } from "./seo";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: SEO_TITLE,
-  description: SEO_DESCRIPTION,
+  applicationName: SITE_NAME,
+  title: DEFAULT_TITLE,
+  description: DEFAULT_DESCRIPTION,
+  keywords: FITNESS_KEYWORDS,
+  category: "fitness",
+  creator,
+  publisher: SITE_NAME,
   alternates: {
     canonical: SITE_URL,
   },
   openGraph: {
-    title: SEO_TITLE,
-    description: SEO_DESCRIPTION,
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
     url: SITE_URL,
-    siteName: "Aaryan Tools",
+    siteName: SITE_NAME,
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: SEO_TITLE,
-    description: SEO_DESCRIPTION,
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
   },
   robots: {
     index: true,
@@ -44,7 +50,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

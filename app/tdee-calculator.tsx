@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
 
 type Gender = "male" | "female";
 type HeightUnit = "cm" | "in" | "ft";
@@ -72,6 +72,7 @@ const displayMeasurement = (value: number, unit: HeightUnit | WeightUnit) =>
   unit === "ft" ? Number(value.toFixed(2)) : Math.round(value);
 
 export default function Home() {
+  const activityId = useId();
   const [gender, setGender] = useState<Gender>("male");
   const [heightUnit, setHeightUnit] = useState<HeightUnit>("cm");
   const [weightUnit, setWeightUnit] = useState<WeightUnit>("kg");
@@ -198,8 +199,12 @@ export default function Home() {
               </div>
 
               <label className="block">
-                <span className="mb-2 block text-sm font-bold text-[#34423a]">Activity level</span>
+                <span className="mb-2 block text-sm font-bold text-[#34423a]" id={`${activityId}-label`}>
+                  Activity level
+                </span>
                 <select
+                  id={activityId}
+                  aria-labelledby={`${activityId}-label`}
                   value={activity}
                   onChange={(event) => setActivity(event.target.value as Activity)}
                   className="h-12 w-full rounded-2xl border border-[#d7cdbf] bg-white/80 px-4 text-sm font-semibold text-[#263238] outline-none transition focus:border-[#2f6f5f] focus:ring-4 focus:ring-[#2f6f5f]/15"
@@ -306,10 +311,15 @@ function NumberField({
   max?: number;
   step?: number;
 }) {
+  const inputId = useId();
+
   return (
-    <label className="block">
-      <span className="mb-1.5 block text-xs font-bold text-[#34423a] sm:mb-2 sm:text-sm">{label}</span>
+    <div className="block">
+      <label htmlFor={inputId} className="mb-1.5 block text-xs font-bold text-[#34423a] sm:mb-2 sm:text-sm">
+        {label}
+      </label>
       <input
+        id={inputId}
         type="number"
         min={min}
         max={max}
@@ -321,7 +331,7 @@ function NumberField({
         }}
         className="h-11 w-full min-w-0 rounded-2xl border border-[#d7cdbf] bg-white/80 px-3 text-base font-bold text-[#263238] outline-none transition focus:border-[#2f6f5f] focus:ring-4 focus:ring-[#2f6f5f]/15 sm:h-12 sm:px-4"
       />
-    </label>
+    </div>
   );
 }
 
@@ -336,9 +346,13 @@ function Segmented<T extends string>({
   value: T;
   onChange: (value: T) => void;
 }) {
+  const groupId = useId();
+
   return (
-    <div>
-      <span className="mb-1.5 block text-xs font-bold text-[#34423a] sm:mb-2 sm:text-sm">{label}</span>
+    <div role="group" aria-labelledby={groupId}>
+      <span id={groupId} className="mb-1.5 block text-xs font-bold text-[#34423a] sm:mb-2 sm:text-sm">
+        {label}
+      </span>
       <div className="grid auto-cols-fr grid-flow-col gap-1.5 rounded-2xl border border-[#d7cdbf] bg-white/55 p-1.5 sm:gap-2">
         {options.map((option) => {
           const active = option.value === value;
@@ -346,6 +360,7 @@ function Segmented<T extends string>({
             <button
               key={option.value}
               type="button"
+              aria-pressed={active}
               onClick={() => onChange(option.value)}
               className={`min-h-10 min-w-0 rounded-xl px-2 text-xs font-bold transition sm:px-3 sm:text-sm ${
                 active

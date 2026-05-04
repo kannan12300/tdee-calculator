@@ -1,9 +1,21 @@
 import TdeeCalculator from "./tdee-calculator";
-import { faqItems, futureTools, SEO_DESCRIPTION, SEO_TITLE, seoSections, SITE_URL } from "./seo-content";
+import {
+  contextualLinks,
+  DEFAULT_DESCRIPTION,
+  DEFAULT_TITLE,
+  faqItems,
+  futureCalculatorRoutes,
+  jsonLdIds,
+  seoSections,
+  SITE_NAME,
+  SITE_URL,
+  socialProfiles,
+} from "./seo";
 
 const webApplicationSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
+  "@id": jsonLdIds.webApplication,
   name: "TDEE Calculator With Macros",
   url: SITE_URL,
   applicationCategory: "HealthApplication",
@@ -15,11 +27,18 @@ const webApplicationSchema = {
   },
   description:
     "A free browser-based fitness calculator for estimating TDEE, maintenance calories, cutting calories, bulking calories, BMI, and protein, carbs, and fat macros.",
+  isPartOf: {
+    "@id": jsonLdIds.website,
+  },
+  publisher: {
+    "@id": jsonLdIds.organization,
+  },
 };
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": jsonLdIds.faq,
   mainEntity: faqItems.map((item) => ({
     "@type": "Question",
     name: item.question,
@@ -30,13 +49,61 @@ const faqSchema = {
   })),
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": jsonLdIds.breadcrumb,
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: SITE_NAME,
+      item: SITE_URL,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "TDEE Calculator With Macros",
+      item: SITE_URL,
+    },
+  ],
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": jsonLdIds.organization,
+  name: SITE_NAME,
+  url: SITE_URL,
+  sameAs: socialProfiles,
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": jsonLdIds.website,
+  name: SITE_NAME,
+  url: SITE_URL,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE_URL}/?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export default function Home() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([webApplicationSchema, faqSchema]),
+          __html: JSON.stringify([
+            webApplicationSchema,
+            faqSchema,
+            breadcrumbSchema,
+            organizationSchema,
+            websiteSchema,
+          ]),
         }}
       />
       <main className="relative px-3 py-4 sm:px-6 sm:py-8">
@@ -58,7 +125,19 @@ export default function Home() {
               <h2 className="mt-2 font-display text-3xl font-semibold text-[#20251f] sm:text-4xl">
                 Free TDEE calculator with macros
               </h2>
-              <p className="mt-3 text-sm leading-6 text-[var(--muted)] sm:text-base">{SEO_DESCRIPTION}</p>
+              <p className="mt-3 text-sm leading-6 text-[var(--muted)] sm:text-base">{DEFAULT_DESCRIPTION}</p>
+              <p className="mt-3 text-sm leading-6 text-[#5d685f]">
+                Use the results as a connected starting point for{" "}
+                {contextualLinks.map((link, index) => (
+                  <span key={link.href}>
+                    <a className="font-bold text-[#2f6f5f] underline-offset-4 transition hover:underline" href={link.href}>
+                      {link.label}
+                    </a>
+                    {index < contextualLinks.length - 1 ? ", " : " "}
+                  </span>
+                ))}
+                and future fitness tools.
+              </p>
             </div>
 
             <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -84,22 +163,27 @@ export default function Home() {
           </section>
 
           <section className="mt-5 rounded-[1.35rem] border border-[#d8d0c5] bg-white/55 p-4 shadow-sm backdrop-blur-xl sm:p-6">
-            <h2 className="text-xl font-bold text-[#26362f]">More fitness tools coming soon</h2>
+            <h2 className="text-xl font-bold text-[#26362f]">Related fitness calculators</h2>
+            <p className="mt-2 text-sm leading-6 text-[#5d685f]">
+              These planned tools will support BMI, protein intake, calorie deficit, and macro planning as the calculator
+              library grows.
+            </p>
             <div className="mt-4 flex flex-wrap gap-2">
-              {futureTools.map((tool) => (
-                <span
-                  key={tool}
-                  aria-disabled="true"
-                  className="rounded-full border border-[#d8d0c5] bg-white/50 px-4 py-2 text-sm font-bold text-[#7b7369]"
+              {futureCalculatorRoutes.map((tool) => (
+                <a
+                  key={tool.href}
+                  href={tool.href}
+                  aria-label={`${tool.title} coming soon`}
+                  className="rounded-full border border-[#d8d0c5] bg-white/50 px-4 py-2 text-sm font-bold text-[#59645c] transition hover:border-[#2f6f5f] hover:bg-white/80 hover:text-[#2f6f5f]"
                 >
-                  {tool}
-                </span>
+                  {tool.title}
+                </a>
               ))}
             </div>
           </section>
 
           <footer className="flex flex-col items-center justify-between gap-3 py-6 text-sm font-semibold text-[#5d685f] sm:flex-row">
-            <p>{SEO_TITLE}</p>
+            <p>{DEFAULT_TITLE}</p>
             <nav aria-label="Footer links" className="flex gap-4">
               <a className="transition hover:text-[#2f6f5f]" href="/privacy">
                 Privacy Policy
