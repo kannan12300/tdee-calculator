@@ -1,0 +1,10 @@
+.next
+node_modules
+.npm-cache
+out
+dist
+*.log
+.env*
+tsconfig.tsbuildinfo
+test-results
+playwright-report
