@@ -8,6 +8,7 @@ type WeightUnit = "kg" | "lb";
 type Activity = "sedentary" | "light" | "moderate" | "very" | "athlete";
 type Goal = "maintain" | "loss" | "gain";
 type MacroKey = "protein" | "carbs" | "fat";
+type NumericInput = number | "";
 
 const activityOptions: Array<{ value: Activity; label: string; multiplier: number }> = [
   { value: "sedentary", label: "Sedentary", multiplier: 1.2 },
@@ -51,7 +52,10 @@ const macroStyles: Record<MacroKey, { label: string; color: string; bg: string; 
 };
 
 const formatNumber = (value: number) => Math.round(value).toLocaleString("en-US");
-const clampPositive = (value: number, fallback: number) => (Number.isFinite(value) && value > 0 ? value : fallback);
+const clampPositive = (value: NumericInput, fallback: number) => {
+  const numericValue = Number(value);
+  return Number.isFinite(numericValue) && numericValue > 0 ? numericValue : fallback;
+};
 const heightToCm = (height: number, unit: HeightUnit) => {
   if (unit === "in") return height * 2.54;
   if (unit === "ft") return height * 30.48;
@@ -73,9 +77,9 @@ export default function Home() {
   const [weightUnit, setWeightUnit] = useState<WeightUnit>("kg");
   const [goal, setGoal] = useState<Goal>("maintain");
   const [activity, setActivity] = useState<Activity>("moderate");
-  const [age, setAge] = useState(28);
-  const [height, setHeight] = useState(175);
-  const [weight, setWeight] = useState(75);
+  const [age, setAge] = useState<NumericInput>(28);
+  const [height, setHeight] = useState<NumericInput>(175);
+  const [weight, setWeight] = useState<NumericInput>(75);
 
   const results = useMemo(() => {
     const safeAge = clampPositive(age, 28);
@@ -296,8 +300,8 @@ function NumberField({
   step = 1,
 }: {
   label: string;
-  value: number;
-  onChange: (value: number) => void;
+  value: NumericInput;
+  onChange: (value: NumericInput) => void;
   min?: number;
   max?: number;
   step?: number;
@@ -311,7 +315,10 @@ function NumberField({
         max={max}
         step={step}
         value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
+        onChange={(event) => {
+          const nextValue = event.target.value;
+          onChange(nextValue === "" ? "" : Number(nextValue));
+        }}
         className="h-11 w-full min-w-0 rounded-2xl border border-[#d7cdbf] bg-white/80 px-3 text-base font-bold text-[#263238] outline-none transition focus:border-[#2f6f5f] focus:ring-4 focus:ring-[#2f6f5f]/15 sm:h-12 sm:px-4"
       />
     </label>

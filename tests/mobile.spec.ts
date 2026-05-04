@@ -23,6 +23,8 @@ test("calculator is usable and responsive on phones", async ({ page }, testInfo)
   await expect(page.getByText("Weight (lb)")).toBeVisible();
 
   const numberInputs = page.locator("input[type='number']");
+  await numberInputs.nth(1).fill("");
+  await expect(numberInputs.nth(1)).toHaveValue("");
   await numberInputs.nth(0).fill("35");
   await numberInputs.nth(1).fill("70");
   await numberInputs.nth(2).fill("190");
