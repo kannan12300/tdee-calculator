@@ -16,7 +16,7 @@ const webApplicationSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "@id": jsonLdIds.webApplication,
-  name: "TDEE Calculator With Macros",
+  name: "Free Calorie Calculator With Macros",
   url: SITE_URL,
   applicationCategory: "HealthApplication",
   operatingSystem: "Any",
@@ -63,7 +63,7 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "TDEE Calculator With Macros",
+      name: "Free Calorie Calculator With Macros",
       item: SITE_URL,
     },
   ],
@@ -123,7 +123,7 @@ export default function Home() {
             <div className="max-w-3xl">
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#2f6f5f]">Fitness calculator guide</p>
               <h2 className="mt-2 font-display text-3xl font-semibold text-[#20251f] sm:text-4xl">
-                Free TDEE calculator with macros
+                Free calorie calculator with macros
               </h2>
               <p className="mt-3 text-sm leading-6 text-[var(--muted)] sm:text-base">{DEFAULT_DESCRIPTION}</p>
               <p className="mt-3 text-sm leading-6 text-[#5d685f]">
@@ -151,7 +151,7 @@ export default function Home() {
           </section>
 
           <section className="mt-5 rounded-[1.35rem] border border-white/70 bg-white/65 p-4 shadow-sm backdrop-blur-xl sm:p-7">
-            <h2 className="font-display text-3xl font-semibold text-[#20251f]">TDEE Calculator FAQ</h2>
+            <h2 className="font-display text-3xl font-semibold text-[#20251f]">Free Calorie Calculator FAQ</h2>
             <div className="mt-5 grid gap-3">
               {faqItems.map((item) => (
                 <article key={item.question} className="rounded-2xl border border-[#d8d0c5] bg-white/60 p-4">

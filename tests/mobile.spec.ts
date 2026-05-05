@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("calculator is usable and responsive on phones", async ({ page }, testInfo) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { level: 1, name: "TDEE Calculator With Macros" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Free Calorie Calculator With Macros" })).toBeVisible();
   await expect(page.locator("h1")).toHaveCount(1);
   await expect(page.getByText("Goal calories", { exact: true })).toBeVisible();
   await expect(page.getByText("Macro split", { exact: true })).toBeVisible();

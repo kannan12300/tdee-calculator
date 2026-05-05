@@ -1,8 +1,8 @@
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
 export const SITE_NAME = "Aaryan Tools";
-export const DEFAULT_TITLE = "TDEE Calculator With Macros  Free Calorie Calculator";
+export const DEFAULT_TITLE = "Free Calorie Calculator With Macros";
 export const DEFAULT_DESCRIPTION =
-  "Use this free TDEE calculator to estimate your maintenance calories, cutting calories, bulking calories, BMI, and protein, carbs, and fat macros.";
+  "Use this free calorie calculator to estimate your maintenance calories, cutting calories, bulking calories, BMI, and protein, carbs, and fat macros.";
 
 export const FITNESS_KEYWORDS = [
   "TDEE calculator",
@@ -56,12 +56,12 @@ export const futureCalculatorRoutes = [
 
 export const faqItems = [
   {
-    question: "What is the most accurate TDEE calculator formula?",
+    question: "What is the most accurate calorie calculator formula?",
     answer:
       "This calculator uses the Mifflin-St Jeor formula, which is widely used for estimating BMR, then adjusts it by activity level to estimate TDEE.",
   },
   {
-    question: "Is this TDEE calculator good for cutting?",
+    question: "Is this free calorie calculator good for cutting?",
     answer:
       "Yes. Choose Fat loss to estimate calories to lose fat and calculate macros for cutting with higher protein to help preserve muscle.",
   },
@@ -89,9 +89,9 @@ export const seoSections = [
       "TDEE means total daily energy expenditure. It is an estimate of how many calories you burn in a full day, including basic body functions, movement, exercise, and daily activity.",
   },
   {
-    title: "How does this TDEE calculator work?",
+    title: "How does this free calorie calculator work?",
     body:
-      "This free TDEE calculator uses your age, gender, height, weight, and activity level to estimate BMR with the Mifflin-St Jeor formula. It then applies an activity multiplier to calculate daily calories.",
+      "This free calorie calculator uses your age, gender, height, weight, and activity level to estimate BMR with the Mifflin-St Jeor formula. It then applies an activity multiplier to calculate daily calories.",
   },
   {
     title: "How to use your calorie result",
