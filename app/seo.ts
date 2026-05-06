@@ -1,8 +1,8 @@
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
 export const SITE_NAME = "Aaryan Tools";
-export const DEFAULT_TITLE = "Free Calorie Calculator With Macros";
+export const DEFAULT_TITLE = "TDEE Calculator With Macros | Free Calorie Calculator";
 export const DEFAULT_DESCRIPTION =
-  "Use this free calorie calculator to estimate your maintenance calories, cutting calories, bulking calories, BMI, and protein, carbs, and fat macros.";
+  "Use this TDEE calculator with macros to estimate maintenance calories, cutting calories, bulking calories, BMI, and protein, carbs, and fat targets.";
 
 export const FITNESS_KEYWORDS = [
   "TDEE calculator",
@@ -16,6 +16,12 @@ export const FITNESS_KEYWORDS = [
   "protein intake calculator",
   "BMI calculator",
   "calorie deficit calculator",
+  "TDEE calculator for cutting",
+  "TDEE calculator for bulking",
+  "maintenance calorie calculator with macros",
+  "calorie deficit calculator with macros",
+  "macro calculator for fat loss",
+  "macro calculator for muscle gain",
   "protein carbs fat calculator",
 ];
 
@@ -56,12 +62,12 @@ export const futureCalculatorRoutes = [
 
 export const faqItems = [
   {
-    question: "What is the most accurate calorie calculator formula?",
+    question: "What is the most accurate TDEE calculator formula?",
     answer:
       "This calculator uses the Mifflin-St Jeor formula, which is widely used for estimating BMR, then adjusts it by activity level to estimate TDEE.",
   },
   {
-    question: "Is this free calorie calculator good for cutting?",
+    question: "Is this TDEE calculator good for cutting?",
     answer:
       "Yes. Choose Fat loss to estimate calories to lose fat and calculate macros for cutting with higher protein to help preserve muscle.",
   },
@@ -89,24 +95,37 @@ export const seoSections = [
       "TDEE means total daily energy expenditure. It is an estimate of how many calories you burn in a full day, including basic body functions, movement, exercise, and daily activity.",
   },
   {
-    title: "How does this free calorie calculator work?",
+    title: "How to use this calculator",
     body:
-      "This free calorie calculator uses your age, gender, height, weight, and activity level to estimate BMR with the Mifflin-St Jeor formula. It then applies an activity multiplier to calculate daily calories.",
+      "Enter your age, gender, height, weight, activity level, and goal. The calculator estimates BMR with the Mifflin-St Jeor formula, applies an activity multiplier, then shows calories and macros.",
   },
   {
-    title: "How to use your calorie result",
+    title: "How cutting calories are calculated",
     body:
-      "Use the main calorie result as a starting point, not a fixed rule. Track your bodyweight and energy for two to three weeks, then adjust if your real-world progress does not match your goal.",
+      "For a cutting goal, the calculator subtracts 500 calories from estimated TDEE and uses higher protein to support muscle retention. This makes it useful as a TDEE calculator for cutting or a calorie deficit calculator with macros.",
   },
   {
-    title: "Cutting, maintenance, and bulking calories",
+    title: "How bulking calories are calculated",
     body:
-      "Use maintenance calories to hold weight steady, cutting calories to lose fat, and bulking calories to gain muscle. This maintenance calories calculator also works as a TDEE calculator for cutting or a TDEE calculator for bulking.",
+      "For a bulking goal, the calculator adds 300 calories to estimated TDEE. This creates a controlled surplus for muscle gain while keeping protein, fats, and carbs visible.",
   },
   {
-    title: "Protein, carbs, and fat macros",
+    title: "How protein, carbs, and fats are calculated",
     body:
-      "The macro calculator estimates protein, carbs, and fat from your goal calories and bodyweight. It can help answer how many calories should I eat, calories to lose fat, calories to gain muscle, and how to calculate macros for cutting or bulking.",
+      "Protein and fat targets are based on bodyweight and goal. Carbs receive the remaining calories after protein and fat, making this a practical macro calculator for fat loss, maintenance, or muscle gain.",
+  },
+] as const;
+
+export const practicalExamples = [
+  {
+    title: "Cutting example",
+    body:
+      "If your estimated TDEE is 2,500 calories, choosing Fat loss gives a target near 2,000 calories. The macro split prioritizes protein first, sets a bodyweight-based fat target, then assigns the rest to carbs.",
+  },
+  {
+    title: "Bulking example",
+    body:
+      "If your estimated TDEE is 2,500 calories, choosing Muscle gain gives a target near 2,800 calories. The added calories mainly increase available carbs, which can support harder training and recovery.",
   },
 ] as const;
 

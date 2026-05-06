@@ -6,6 +6,7 @@ import {
   faqItems,
   futureCalculatorRoutes,
   jsonLdIds,
+  practicalExamples,
   seoSections,
   SITE_NAME,
   SITE_URL,
@@ -16,7 +17,7 @@ const webApplicationSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "@id": jsonLdIds.webApplication,
-  name: "Free Calorie Calculator With Macros",
+  name: "TDEE Calculator With Macros",
   url: SITE_URL,
   applicationCategory: "HealthApplication",
   operatingSystem: "Any",
@@ -63,7 +64,7 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Free Calorie Calculator With Macros",
+      name: "TDEE Calculator With Macros",
       item: SITE_URL,
     },
   ],
@@ -123,7 +124,7 @@ export default function Home() {
             <div className="max-w-3xl">
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#2f6f5f]">Fitness calculator guide</p>
               <h2 className="mt-2 font-display text-3xl font-semibold text-[#20251f] sm:text-4xl">
-                Free calorie calculator with macros
+                TDEE calculator with macros
               </h2>
               <p className="mt-3 text-sm leading-6 text-[var(--muted)] sm:text-base">{DEFAULT_DESCRIPTION}</p>
               <p className="mt-3 text-sm leading-6 text-[#5d685f]">
@@ -145,6 +146,15 @@ export default function Home() {
                 <article key={section.title} className="rounded-2xl border border-[#d8d0c5] bg-white/55 p-4">
                   <h3 className="text-lg font-bold text-[#26362f]">{section.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-[#5d685f]">{section.body}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              {practicalExamples.map((example) => (
+                <article key={example.title} className="rounded-2xl border border-[#cfc5b6] bg-[#1e2a24] p-4 text-white">
+                  <h3 className="text-lg font-bold text-[#d8f1e9]">{example.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#bfd0c9]">{example.body}</p>
                 </article>
               ))}
             </div>

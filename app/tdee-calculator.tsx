@@ -130,7 +130,7 @@ export default function Home() {
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#2f6f5f]">Aaryan Tools</p>
               <h1 id="calculator-title" className="mt-1 font-display text-[2.35rem] font-semibold leading-none text-[#20251f] sm:mt-2 sm:text-5xl">
-                Free Calorie Calculator With Macros
+                TDEE Calculator With Macros
               </h1>
               <p className="mt-2 text-sm text-[var(--muted)] sm:text-base">Find your daily calories in seconds</p>
             </div>
